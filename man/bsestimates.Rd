@@ -4,7 +4,7 @@
 \alias{bsestimates}
 \title{Bootstrap properties of estimators}
 \usage{
-bsestimates(data, n, sim)
+bsestimates(data, n, sim, method)
 }
 \arguments{
 \item{data}{Required Data Frame with at least 2 variables}
@@ -12,6 +12,8 @@ bsestimates(data, n, sim)
 \item{n}{Sample size}
 
 \item{sim}{No of simulated samples}
+
+\item{method}{Select an estimation method for "simple, Ratio and regression}
 }
 \value{
 The bias, mean squared error, relative efficiency and Percentage contribution of bias
@@ -20,5 +22,5 @@ The bias, mean squared error, relative efficiency and Percentage contribution of
 Bootstrap properties of estimators
 }
 \examples{
-bsestimates(data.frame(c(2,3,1,2,3,4,5,5,6,6), c(1,1,2,3,4,4,5,3,3,5)),5, 100)
+bsestimates(data.frame(c(2,3,1,2,3,4,5,5,6,6), c(1,1,2,3,4,4,5,3,3,5)),5, 100, 'simple')
 }

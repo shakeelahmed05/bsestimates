@@ -3,12 +3,13 @@
 #' @param data  Required Data Frame with at least 2 variables 
 #' @param n Sample size
 #' @param sim No of simulated samples
+#' @param method Select an estimation method for "simple, Ratio and regression
 #'
 #' @return  The bias, mean squared error, relative efficiency and Percentage contribution of bias
 #' @export
 #'
-#' @examples bsestimates(data.frame(c(2,3,1,2,3,4,5,5,6,6), c(1,1,2,3,4,4,5,3,3,5)),5, 100)
-bsestimates<-function(data, n, sim){
+#' @examples bsestimates(data.frame(c(2,3,1,2,3,4,5,5,6,6), c(1,1,2,3,4,4,5,3,3,5)),5, 100, 'simple')
+bsestimates<-function(data, n, sim, method){
   M=mean(data[,2])
   M_0x<-c()
   M_0y<-c()
@@ -26,10 +27,14 @@ bsestimates<-function(data, n, sim){
     M_reg[i]<-M_0y[i]+Beta*(M_x-M_0x[i])
   }
   
-  summary_1<-list(simple=data.frame(bias=mean(M_0y-M), mse=mean((M_0y-M)^2),re=mean((M_0y-M)^2)/mean((M_0y-M)^2), PCOB=100*((mean(M_0y-M))^2)/mean((M_0y-M)^2)),
-                  ratio=data.frame(bias=mean(M_r-M)
-                                   , mse=mean((M_r-M)^2), re=mean((M_0y-M)^2)/mean((M_r-M)^2), PCOB=100*((mean(M_r-M))^2)/mean((M_r-M)^2)),
-                  regression=data.frame(bias=mean(M_reg-M)
-                                        , mse=mean((M_reg-M)^2), re=mean((M_0y-M)^2)/mean((M_reg-M)^2), PCOB=100*((mean(M_reg-M))^2)/mean((M_reg-M)^2))   )
-  return(summary_1)
+  simple=data.frame(bias=mean(M_0y-M), mse=mean((M_0y-M)^2),re=mean((M_0y-M)^2)/mean((M_0y-M)^2), PCOB=100*((mean(M_0y-M))^2)/mean((M_0y-M)^2))
+  ratio=data.frame(bias=mean(M_r-M), mse=mean((M_r-M)^2), re=mean((M_0y-M)^2)/mean((M_r-M)^2), PCOB=100*((mean(M_r-M))^2)/mean((M_r-M)^2))
+  regression=data.frame(bias=mean(M_reg-M), mse=mean((M_reg-M)^2), re=mean((M_0y-M)^2)/mean((M_reg-M)^2), PCOB=100*((mean(M_reg-M))^2)/mean((M_reg-M)^2))   
+  if (method == 'simple') {
+    print(simple)
+  } else if (method== 'ratio') {
+    print(ratio)
+  } else {
+    print(regression)
+  }
 }
