@@ -1,0 +1,11 @@
+Package: bsestimates
+Title: Produces properties of an estimator
+Version: 0.0.0.9000
+Authors@R: 
+    person("Shakeel", "Ahmed", , "shakeel.ahmed@sns.nust.edu.pk", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Produces properties of an estimator.
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
